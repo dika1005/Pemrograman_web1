@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Input Teks</title>
+    <style>
+        .form-box {
+            width: 600px;
+            padding: 40px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 0;
+            background-color: rgb(245, 245, 245);
+        h1 {
+            text-align: left;
+        }
+        table {
+            margin-left: 5px;
+            margin-right: 20px;
+        }
+        td {
+            padding: 10px;
+        }
+    }
+        
+        .kh {
+            background-color: #dad6d6 !important;
+            text-align: center;
+            color: black;
+            border-radius: 3px;
+        }
+        .tombol1 button {
+            position: center;
+            background-color: rgb(9, 67, 240);
+            border-radius: 3px;
+            padding: 7px 15px;
+            border: none;
+            cursor: pointer;
+            margin-left: 170%;
+        }
+        .tombol2 button {
+            position: center;
+            background-color: rgb(255, 205, 39);
+            border-radius: 3px;
+            padding: 7px 15px;
+            border: none;
+            cursor: pointer;
+            margin-left: 50%;
+        }
+       
+    </style>
+</head>
+<body>
+    <div class="form-box">
+    <h1>Form Pemesanan</h1>
+    <form method="get" action="M2-1.html">
+        <table>
+            <tr>
+                <td><label for="IdPemesan">Id Pemesan</label></td>
+                <td>
+                    <input type="number" id="idPemesan" name="idPemesan" min="1" max="10" style="width: 97%;" required>
+                </td>
+            </tr>
+            
+            <tr>
+                <td><label for="NamaPemesan">Nama Pemesan</label></td>
+                <td>
+                    <input type="text" id="NamaPemesan" name="NamaPemesan" size="40" required>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="NomorIdentitas">Nomor Identitas</label></td>
+                <td>
+                    <input type="number" id="NomorIdentitas" name="NomorIdentitas" min="1" max="10" style="width: 97%;" required>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="tipe kamar">Tipe Kamar</label></td>
+                <td>
+                    <div>        
+                        <select class="kh" name="kamar hotel">
+                            <option value="-" selected >--pilih--</option>
+                            <option value="std">Standard</option>
+                            <option value="dlx">Deluxe</option>
+                            <option value="fml">Family</option>            
+                        </select>          
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="Harga">Harga</label></td>
+                <td>
+                    <input type="number" id="Harga" name="Harga" min="5" max="20" style="width: 97%;" required>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="TanggalPesan">Tanggal Pesan</label></td>
+                <td>
+                    <input type="date" id="TanggalPesan" name="TanggalPesan" style="width: 97%;" required>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="DurasiMenginap">Durasi Menginap</label></td>
+                <td>
+                    <input type="number" id="DurasiMenginap" pattern="[1-30]" name="DurasiMenginap" maxlength="30" min="1" max="30" required>
+                    <span>Hari</span>
+                </td>
+            </tr>
+            <tr>
+                <td>Termasuk Breakfast</td>
+                <td><input type="checkbox" id="TermasukBreakfast" name="TermasukBreakfast" value="sarapan"> Ya</td>
+            </tr>
+            <tr>
+                <td><label for="TotalBayar">Total Bayar  </label></td>
+                <td>
+                    <input type="number" id="TotalBayar" name="TotalBayar" maxlength="30" style="width: 97%;" required>
+                </td>
+            </tr>
+            <tr class="button">
+                <td>
+                    <form method="get" action="pesanan.html">
+                        <div class="tombol1">
+                            <button name="save" value="simpan" >simpan</button>
+                        </div>
+                </td>
+                <td>
+                    <form method="get" action="pesanan.html">
+                        <div class="tombol2">
+                            <button name="discard" value="cancel">batal</button>
+                        </div>
+                </td>
+                </tr>
+        </table>
+    </form>
+</div>
+</body>
+</html>
