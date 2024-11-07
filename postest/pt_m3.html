@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web Layout</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background-color: #f4f4f4;
+    }
+        .container {
+      width: 600px;
+      border: 2px solid black;
+      padding: 20px;
+      background-color: white;
+      display: flex;
+      gap: 15px;
+    }
+
+    .image {
+      width: 150px;
+      height: 150px;
+      border: 2px solid black;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      color: black;
+    }
+    
+    .content {
+      flex: 1;
+    }
+    
+    .title {
+      font-size: 14px;
+      color: black;
+      margin-bottom: 10px;
+      border: 2px solid black;
+      padding: 10px;
+    }
+    
+    .article-snippet {
+      width: 400px;
+      height: 70px;
+      border: 2px solid black;
+      display: flex;
+      text-decoration: none;
+      font-size: 14px;
+      color: black;
+      margin-bottom: 10px;
+      padding-left: 10px;
+      padding-top: 10px;
+    }
+    .read-more {
+      align-self: flex-end;
+      font-size: 14px;
+      text-decoration: none;
+      color: black;
+      margin-left: 60%;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="image">
+      Gambar
+    </div>
+    <div class="content">
+      <div class="title">Judul</div>
+      <a href="#" class="article-snippet">Potongan Artikel</a>
+      <div class="read-more">baca selengkapnya</div>
+    </div>
+  </div>
+
+</body>
+</html>
