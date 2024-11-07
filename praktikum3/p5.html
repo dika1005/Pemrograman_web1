@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CONTOH TEKS BERGERAK</title>
+    <style>
+        .marquee{
+            width: 100%;
+            overflow: hidden;
+            white-space: nowrap;
+            box-sizing: border-box;
+        }
+        .marque-content{
+            display: inline-block;
+            animation: marquee 10s linear infinite;
+        }
+        @keyframes marquee{
+            0%{
+                transform: translateX(100%);
+            }
+            100%{
+                transform: translateX(-100%);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class = "marquee">
+        <div class = "marque-content">
+            menjadi universitas unggul di internasional pada tahun 2030
+        </div>
+    </div>
+    
+</body>
+</html>
