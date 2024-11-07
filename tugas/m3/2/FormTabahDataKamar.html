@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Input Teks</title>
+    <link rel="stylesheet" href="dataKamarStyle.css">
+</head>
+<body>
+    <div class="form-box">
+    <h1>Tambah Data Kamar</h1>
+    <form action="/submit-data-kamar" method="post" enctype="multipart/form-data">
+        <table class="table1">
+            <tr>
+                <td><label for="IdKamar">Id Kamar</label></td>
+                <td>
+                    <input type="number" id="Id" name="Id" min="1" max="10" style="width: 97%;" required>
+                </td>
+            </tr>
+            
+            <tr>
+                <td><label for="GambarRuangan">Gambar Ruangan</label></td>
+                <td>
+                    <input type="file" id="GambarRuangan" name="GambarRuangan" accept="image/*" required>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="JenisKamar">Jenis Kamar</label></td>
+                <td>
+                    <input type="text" id="JenisKamar" name="JenisKamar" size="40px" required>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="harga">Harga</label></td>
+                <td>
+                    <input type="number" id="Harga" name="harga" style="width: 97%;" required>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="Fasilitas">Fasilitas</label></td>
+                <td>
+                    <textarea name="Fasilitas" id="Fasilitas" rows="3" placeholder="Fasilitas"  required></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <button class="buton1" type="submit" required >Kirim Data Ruangan</button>
+                </td>
+            </tr>
+    </form>
+</div>
+</body>
+</html>
