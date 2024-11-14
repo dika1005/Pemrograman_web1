@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Login</title>
+</head>
+<body>
+    <h1>Form Login</h1>
+    <form onsubmit="validasiLogin(event)">
+        <label for="Username">Username:</label>
+        <input type="text" id="user" name="username" required><br><br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br><br>
+        <button type="submit">Login</button>
+    </form>
+
+    <a id="ifSucces" href="index.html" style="display:none;"></a>
+    <a id="ifFailed" href="t1.html" style="display:none;"></a>
+
+    <script>
+        function validasiLogin(event) {
+            let username = document.getElementById("user").value;
+            let password = document.getElementById("password").value;
+            if (username === "admin" && password === "123") {
+                alert("Login berhasil");
+                document.getElementById("ifSucces").click();
+            } else {
+                alert("Login gagal");
+                document.getElementById("ifFailed").click();
+            }
+        }
+    </script>
+</body>
+</html>
