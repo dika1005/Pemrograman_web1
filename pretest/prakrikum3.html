@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Login</title>
+    <script>
+        function validasiLogin() {
+          
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+
+           
+            if (username == "" || password == "") {
+                alert("Username dan Password tidak boleh kosong!");
+                return false; 
+            }
+
+           
+            var validUsername = "admin";
+            var validPassword = "12345";
+
+            if (username === validUsername && password === validPassword) {
+                alert("Login Berhasil!");
+                return true; 
+            } else {
+                alert("Username atau Password Salah!");
+                return false; 
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Form Login</h1>
+    <form onsubmit="return validasiLogin()">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required><br><br>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br><br>
+
+        <button type="submit">Login</button>
+    </form>
+</body>
+</html>

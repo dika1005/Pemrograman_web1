@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang = "id">
+    <head>
+        <meta charset = "UTF-8" />
+        <meta name = "viewport" content = "width = device-width, initial-scale = 1.0">
+        <title>Form Menghitung Penjualan</title>
+        <style>
+            .tengah {
+                text-align : center;
+                align-items : center;
+            }
+        </style>
+        <script>
+            function KoBa() {
+                var barang = document.getElementById("br").value;
+                var harga, namaBarang;
+                if (barang == "Buku") {
+                    namaBarang = "Buku";
+                    harga = 5000;
+                } else if (barang == "Penggaris") {
+                    namaBarang = "Penggaris";
+                    harga = 1500;
+                } else if (barang == "Pulpen") {
+                    namaBarang = "Pulpen";
+                    harga = 2000;
+                }
+                document.getElementById("nb").value = namaBarang;
+                document.getElementById("h").value = harga;
+            }
+
+            function hitung() {
+                var harga = parseInt(document.getElementById("h").value);
+                var jumlah = parseInt(document.getElementById("j").value);
+                var jumlahBayar, potongan, totalBayar;
+                jumlahBayar = harga * jumlah;
+                if (jumlah <= 10) {
+                    potongan = jumlahBayar * 0.05;
+                } else if (jumlah > 10 && jumlah <= 20) {
+                    potongan = jumlahBayar * 0.1;
+                } else {
+                    potongan = jumlahBayar * 0.15;
+                }
+                totalBayar = jumlahBayar - potongan;
+                document.getElementById("jb").value = jumlahBayar;
+                document.getElementById("p").value = potongan;
+                document.getElementById("t").value = totalBayar;
+            }
+
+            function nota() {
+                namaBarang = document.getElementById("nb").value;
+                jumlah = document.getElementById("j").value;
+                harga = document.getElementById("h").value;
+                jumlahBayar = document.getElementById("jb").value;
+                potongan = document.getElementById("p").value;
+                totalBayar = document.getElementById("t").value;
+                document.getElementById("notaPenjualan").innerHTML = 
+                `<h2>Nota Penjualan</h2>
+                <table>
+                    <tr><td>Nama Barang</td><td>= ${namaBarang}</td></tr>
+                    <tr><td>Jumlah Beli</td><td>= ${jumlah}</td></tr>
+                    <tr><td colspan = "2">--------------------------------</td></tr>
+                    <tr><td>Harga</td><td>= ${harga}</td></tr>
+                    <tr><td>Jumlah Bayar</td><td>= ${jumlahBayar}</td></tr>
+                    <tr><td>Potongan</td><td>= ${potongan}</td></tr>
+                    <tr><td colspan = "2">===================</td></tr>
+                    <tr><td>Total Bayar</td><td>= ${totalBayar}</td></tr>
+                </table>`;
+            }
+        </script>
+    </head>
+    <body>
+        <h1>Form Menghitung Penjualan</h1>
+        <form name = "form1">
+            <table border = "1">
+                <tr>
+                    <td class = "tengah" colspan = "2"><label>Perhitungan Penjualan</label></td>
+                </tr>
+                <tr>
+                    <td><label>Kode Barang</label></td>
+                    <td>
+                        <select name = "br" id = "br" onchange = "KoBa()">
+                            <option value = "Belum ada yang dipilih!">-- Pilih Salah satu --</option>
+                            <option value = "Buku">B001</option>
+                            <option value = "Penggaris">B002</option>
+                            <option value = "Pulpen">B003</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label>Jumlah Beli</label></td>
+                    <td><input type = "number" name = "j" id = "j" size = "10" maxlength = "10" onchange = "hitung()" /></td>
+                </tr>
+                <tr>
+                    <td><label>Nama Barang</label></td>
+                    <td><input type = "text" name = "nb" id = "nb" size = "10" maxlength = "10" readonly /></td>
+                </tr>
+                <tr>
+                    <td><label>Harga</label></td>
+                    <td><input type = "text" name = "h" id = "h" size = "10" maxlength = "10" readonly /></td>
+                </tr>
+                <tr>
+                    <td><label>Jumlah Bayar</label></td>
+                    <td><input type = "text" name = "jb" id = "jb" size = "10" maxlength = "10" readonly /></td>
+                </tr>
+                <tr>
+                    <td><label>Potongan</label></td>
+                    <td><input type = "text" name = "p" id = "p" size = "10" maxlength = "10" readonly /></td>
+                </tr>
+                <tr>
+                    <td><label>Total Bayar</label></td>
+                    <td><input type = "text" name = "t" id = "t" size = "10" maxlength = "10" readonly /></td>
+                </tr>
+                <tr>
+                    <td class = "tengah" colspan = "2">
+                        <button type = "button" name = "bayar" value = "bayar" onclick = "nota()">Bayar</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+        <div id = "notaPenjualan"></div>
+    </body>
+</html>
