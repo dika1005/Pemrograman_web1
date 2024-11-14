@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>javascript</title>
+    <script>
+        function showData() {
+            pr = document.getElementById("prodi").value;
+            document.getElementById("programStudi").value = pr;
+        }
+    </script>
+</head>
+<body>
+    <h1>form pilih program studi</h1>
+    <form name="form1">
+        <table border="0">
+            <tr>
+                <td><label>program studi</label></td>
+                <td>
+                    <select name="prodi" id="prodi" onchange="showData()">
+                        <option value="belum ada yang dipilih">-pilih-</option>
+                        <option value="ti">teknik informatika</option>
+                        <option value="si">sistem informsdi</option>
+                        <option value="dkv">desain komunikasi visual</option>
+                        <option value="ts">teknik sipil</option>
+                        <option value="mi">manajemen informatika</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label>data</label></td>
+                <td><input type="text" name="programStudi" id="programStudi" readonly></td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>

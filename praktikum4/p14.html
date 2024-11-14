@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array 1 Dimensi</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        #output {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>contoh penggunaan array 1 Dimensi</h1>
+
+    <input type="text" id="inputValue" placeholder="masukan nama buah buahan" />
+    <button onclick="tambah()">tambah (push)</button>
+    <button onclick="hapus()">hapus (pop)</button>
+
+    <div id="output"></div>
+
+    <script>
+        let buah = [];
+
+        function tambah() {
+            const input = document.getElementById("inputValue").value;
+            if(input){
+                buah.push(input);
+                document.getElementById("inputValue").value = "";
+                tampilkan();
+            }
+        }
+
+        function hapus() {
+            if(buah.length > 0){
+                buah.pop();
+                tampilkan();
+            }else{
+                alert("buah buahan sudah kosong");
+            }
+        }
+
+        function tampilkan() {
+            const output = document.getElementById("output");
+            output.innerHTML = `<strong> isi buah buahan: </strong> ${buah.join(", ")}`;
+        }
+    </script>
+</body>
+</html>
