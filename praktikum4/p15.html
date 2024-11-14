@@ -3,9 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>array 2 dimensi dan 3 dimensi</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        #output {
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
-    
+    <h1>contoh array 2 dimensi dan 3 dimensi</h1>
+
+    <button onclick="tampilkanArray2D()">tampilkan array 2D</button>
+    <button onclick="tampilkanArray3D()">tampilkan array 3D</button>
+
+    <div id="output"></div>
+
+    <script>
+        const array2d = [
+        ["anggur", "apel", "jeruk"],
+        ["mangga", "pisang", "kiwi"],
+        ["semangka", "nanas", "stroberi"],
+        ];
+
+        const array3d = [
+        [
+            ["anggur", "apel"],
+            ["jeruk", "mangga"],
+        ],
+        [
+            ["pisang", "kiwi"],
+            ["semangka", "nanas"],
+        ],
+        [
+            ["stroberi", "blueberry"],
+            ["raspbery", "cerry"],
+        ],
+        ];
+
+        function tampilkanArray2D() {
+            const output = document.getElementById("output");
+            let result = "<strong> isi array 2 dimensi: </strong><br>";
+            array2d.forEach((row) => {
+                result += row.join(", ") + "<br>";
+            });
+            output.innerHTML = result;
+        }
+
+        function tampilkanArray3D() {
+            const output = document.getElementById("output");
+            let result = "<strong> isi array 3 dimensi: </strong><br>";
+            array3d.forEach((matrix) => {
+                matrix.forEach((row) => {
+                    result += row.join(", ") + "<br>";
+                });
+                result += "<br>";
+            });
+            output.innerHTML = result;
+        }
+    </script>
 </body>
 </html>
