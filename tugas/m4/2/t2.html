@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Input Teks</title>
+    <style>
+        .form-box {
+            width: 600px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 0 ;
+            background-color: rgb(245, 245, 245);
+        }
+        h1 {
+            text-align: left;
+        }
+        td {
+            padding: 10px;
+        }
+        .button-group {
+            margin-top: 10px;
+        }
+        .info-button, .add-button, .cancel-button {
+            cursor: pointer;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        function Validasi() {
+            let idKamar = document.getElementById("Id").value;
+            let jenisKamar = document.getElementById("jenisKamar").value;
+            let harga = document.getElementById("Harga").value;
+            let fasilitas = document.getElementById("Fasilitas").value;
+            if(idKamar == "") {
+                alert("Data tidak boleh kosong");
+                return;
+            }
+            if(jenisKamar == "") {
+                alert("Data tidak boleh kosong");
+                return;
+            }
+            if(harga == "") {
+                alert("Data tidak boleh kosong");
+                return;
+            }
+            if(fasilitas == "") {
+                alert("Data tidak boleh kosong");
+                return;
+            }
+            else {
+                alert("Data berhasil ditambahkan");
+                return;
+            }
+        }
+    </script>
+
+    <div class="form-box">
+        <h1>Tambah Data Kamar</h1>
+        <form action="/submit-data-kamar" method="post" enctype="multipart/form-data" onsubmit="return Validasi()">
+            <table class="table1">
+                <tr>
+                    <td><label for="IdKamar">Id Kamar</label></td>
+                    <td>
+                        <input type="number" id="Id" name="Id" min="1" max="10" style="width: 97%;" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="GambarRuangan">Gambar Ruangan</label></td>
+                    <td>
+                        <input type="file" id="GambarRuangan" name="GambarRuangan" accept="image/*" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="JenisKamar">Jenis Kamar</label></td>
+                    <td>
+                        <select name="jenisKamar" id="jenisKamar">
+                            <option value="std">Standard</option>
+                            <option value="dlx">Deluxe</option>
+                            <option value="fml">Family</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="harga">Harga</label></td>
+                    <td>
+                        <input type="number" id="Harga" name="harga" style="width: 97%;" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="Fasilitas">Fasilitas</label></td>
+                    <td>
+                        <textarea name="Fasilitas" id="Fasilitas" rows="3" placeholder="Fasilitas" required></textarea>
+                    </td>
+                </tr>
+            </table>
+            <div class="button-group">
+                <button type="button" class="info-button" onclick="window.location.href='1.html'">Kamar & Fasilitas</button>
+                <button type="submit" class="add-button" onclick="Validasi()">Tambah</button>
+                <button type="reset" class="cancel-button">Batal</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
