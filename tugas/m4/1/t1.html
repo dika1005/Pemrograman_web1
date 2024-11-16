@@ -20,14 +20,15 @@
 
     <script>
         function validasiLogin(event) {
+            event.preventDefault(); 
             let username = document.getElementById("user").value;
             let password = document.getElementById("password").value;
             if (username === "admin" && password === "123") {
                 alert("Login berhasil");
-                document.getElementById("ifSucces").click();
+                document.getElementById("ifSucces").click();  
             } else {
                 alert("Login gagal");
-                document.getElementById("ifFailed").click();
+                document.getElementById("ifFailed").click();  
             }
         }
     </script>
