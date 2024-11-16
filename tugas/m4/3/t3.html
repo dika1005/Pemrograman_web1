@@ -13,6 +13,7 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             margin: 0;
             background-color: rgb(245, 245, 245);
+        }
         h1 {
             text-align: left;
         }
@@ -23,7 +24,6 @@
         td {
             padding: 10px;
         }
-    }
         
         .kh {
             background-color: #dad6d6 !important;
@@ -31,25 +31,28 @@
             color: black;
             border-radius: 3px;
         }
-        .tombol1 button {
-            position: center;
-            background-color: rgb(9, 67, 240);
-            border-radius: 3px;
+        .tombol1, .tombol2 {
+            display: inline-block;
+            margin: 0 10px; 
             padding: 7px 15px;
             border: none;
-            cursor: pointer;
-            margin-left: 170%;
-        }
-        .tombol2 button {
-            position: center;
-            background-color: rgb(255, 205, 39);
             border-radius: 3px;
-            padding: 7px 15px;
-            border: none;
+            color: white;
             cursor: pointer;
-            margin-left: 50%;
         }
-       
+    
+        .tombol1 {
+            background-color: blue;
+        }
+    
+        .tombol2 {
+            background-color: orange;
+        }
+    
+        .tombol-container {
+            text-align: center; 
+            margin-top: 20px; 
+        }
     </style>
 </head>
 <body>
@@ -140,7 +143,7 @@
         <table>
             <tr>
                 <td><label for="idPemesan">Id Pemesan</label></td>
-                <td><input type="number" id="idPemesan" name="idPemesan" min="1" max="10" required></td>
+                <td><input type="number" id="idPemesan" name="idPemesan" min="1" max="10" style="width: 87%;" required></td>
             </tr>
             <tr>
                 <td><label for="NamaPemesan">Nama Pemesan</label></td>
@@ -192,8 +195,8 @@
             </tr>
             <tr>
                 <td colspan="2" align="center">
-                    <button type="submit">Simpan</button>
-                    <button type="reset">Batal</button>
+                    <button class="tombol1" type="submit">Simpan</button>
+                    <button class="tombol2" type="reset">Batal</button>
                 </td>
             </tr>
         </table>
