@@ -4,6 +4,96 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Form Pemesanan Kamar Hotel</title>
+    <script src="Js/jquery-3.7.1.js"></script>
+<script>
+    function HargPerKamar() {
+        var jenisKamar = $("#kamarHotel").val();
+        var harga = 0;
+        
+        if (jenisKamar === "std") {
+            harga = 300000;
+        } else if (jenisKamar === "dlx") {
+            harga = 500000;
+        } else if (jenisKamar === "fml") {
+            harga = 800000;
+        }
+        
+        $("#Harga").val(harga);
+        hitungPembayaran();
+    }
+
+    function Validasi() {
+        var NomorIdentitas = $("#NomorIdentitas").val();
+        if (NomorIdentitas.length !== 16) {
+            alert("Nomor identitas harus 16 digit.");
+            return false;
+        }
+        return true;
+    }
+
+    function hitungPembayaran() {
+        var harga = parseInt($("#Harga").val()) || 0;
+        var durasi = parseInt($("#DurasiMenginap").val()) || 1;
+        var Breakfast = $("#TermasukBreakfast").is(":checked");
+        var TotalBayar = harga * durasi;
+
+        if (Breakfast) {
+            TotalBayar += 80000 * durasi;
+        }
+        
+        if (durasi > 3) {
+            TotalBayar -= TotalBayar * 0.10;
+        }
+        
+        $("#TotalBayar").val(TotalBayar);
+    }
+
+    function simpan() {
+        if (!Validasi()) {
+            return;
+        }
+
+        var idPemesan = $("#idPemesan").val();
+        var NamaPemesan = $("#NamaPemesan").val();
+        var jenisKelamin = $('input[name="jenisKelamin"]:checked').val();
+        var NomorIdentitas = $("#NomorIdentitas").val();
+        var kamarHotel = $("#kamarHotel").val();
+        var Harga = $("#Harga").val();
+        var TanggalPesan = $("#TanggalPesan").val();
+        var DurasiMenginap = $("#DurasiMenginap").val();
+        var TermasukBreakfast = $("#TermasukBreakfast").is(":checked") ? "Ya" : "Tidak";
+        var TotalBayar = $("#TotalBayar").val();
+        var diskon = DurasiMenginap > 3 ? 10 : 0;
+        var potongan = TotalBayar * diskon / 100;
+
+        $("#Container").html(
+        `<h1>Data Pemesanan</h1>
+        <table>
+            <tr><td>Id Pemesan :</td><td>${idPemesan}</td></tr>
+            <tr><td>Nama Pemesan :</td><td>${NamaPemesan}</td></tr>
+            <tr><td>Jenis Kelamin :</td><td>${jenisKelamin}</td></tr>
+            <tr><td>Nomor Identitas :</td><td>${NomorIdentitas}</td></tr>
+            <tr><td>Tipe Kamar :</td><td>${kamarHotel}</td></tr>
+            <tr><td>Harga :</td><td>${Harga}</td></tr>
+            <tr><td>Tanggal Pesan :</td><td>${TanggalPesan}</td></tr>
+            <tr><td>Durasi Menginap :</td><td>${DurasiMenginap} hari</td></tr>
+            <tr><td>Termasuk Breakfast :</td><td>${TermasukBreakfast}</td></tr>
+            <tr><td>Total Bayar :</td><td>${TotalBayar}</td></tr>
+            <tr><td>Diskon :</td><td>${diskon}%</td></tr>
+            <tr><td>Potongan :</td><td>${potongan}</td></tr>
+            <tr><td>Total Bayar Setelah Diskon :</td><td>${TotalBayar - potongan}</td></tr>
+        </table>`);
+    }
+
+    $(document).ready(function() {
+        $("#kamarHotel").change(HargPerKamar);
+        $("#DurasiMenginap, #TermasukBreakfast").change(hitungPembayaran);
+        $("form").submit(function(event) {
+            event.preventDefault();
+            simpan();
+        });
+    });
+</script>
     <style>
         .form-box {
             width: 550px;
@@ -126,93 +216,3 @@
 <div id="Container"></div>
 </body>
 </html>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-    function HargPerKamar() {
-        var jenisKamar = $("#kamarHotel").val();
-        var harga = 0;
-        
-        if (jenisKamar === "std") {
-            harga = 300000;
-        } else if (jenisKamar === "dlx") {
-            harga = 500000;
-        } else if (jenisKamar === "fml") {
-            harga = 800000;
-        }
-        
-        $("#Harga").val(harga);
-        hitungPembayaran();
-    }
-
-    function Validasi() {
-        var NomorIdentitas = $("#NomorIdentitas").val();
-        if (NomorIdentitas.length !== 16) {
-            alert("Nomor identitas harus 16 digit.");
-            return false;
-        }
-        return true;
-    }
-
-    function hitungPembayaran() {
-        var harga = parseInt($("#Harga").val()) || 0;
-        var durasi = parseInt($("#DurasiMenginap").val()) || 1;
-        var Breakfast = $("#TermasukBreakfast").is(":checked");
-        var TotalBayar = harga * durasi;
-
-        if (Breakfast) {
-            TotalBayar += 80000 * durasi;
-        }
-        
-        if (durasi > 3) {
-            TotalBayar -= TotalBayar * 0.10;
-        }
-        
-        $("#TotalBayar").val(TotalBayar);
-    }
-
-    function simpan() {
-        if (!Validasi()) {
-            return;
-        }
-
-        var idPemesan = $("#idPemesan").val();
-        var NamaPemesan = $("#NamaPemesan").val();
-        var jenisKelamin = $('input[name="jenisKelamin"]:checked').val();
-        var NomorIdentitas = $("#NomorIdentitas").val();
-        var kamarHotel = $("#kamarHotel").val();
-        var Harga = $("#Harga").val();
-        var TanggalPesan = $("#TanggalPesan").val();
-        var DurasiMenginap = $("#DurasiMenginap").val();
-        var TermasukBreakfast = $("#TermasukBreakfast").is(":checked") ? "Ya" : "Tidak";
-        var TotalBayar = $("#TotalBayar").val();
-        var diskon = DurasiMenginap > 3 ? 10 : 0;
-        var potongan = TotalBayar * diskon / 100;
-
-        $("#Container").html(
-        `<h1>Data Pemesanan</h1>
-        <table>
-            <tr><td>Id Pemesan :</td><td>${idPemesan}</td></tr>
-            <tr><td>Nama Pemesan :</td><td>${NamaPemesan}</td></tr>
-            <tr><td>Jenis Kelamin :</td><td>${jenisKelamin}</td></tr>
-            <tr><td>Nomor Identitas :</td><td>${NomorIdentitas}</td></tr>
-            <tr><td>Tipe Kamar :</td><td>${kamarHotel}</td></tr>
-            <tr><td>Harga :</td><td>${Harga}</td></tr>
-            <tr><td>Tanggal Pesan :</td><td>${TanggalPesan}</td></tr>
-            <tr><td>Durasi Menginap :</td><td>${DurasiMenginap} hari</td></tr>
-            <tr><td>Termasuk Breakfast :</td><td>${TermasukBreakfast}</td></tr>
-            <tr><td>Total Bayar :</td><td>${TotalBayar}</td></tr>
-            <tr><td>Diskon :</td><td>${diskon}%</td></tr>
-            <tr><td>Potongan :</td><td>${potongan}</td></tr>
-            <tr><td>Total Bayar Setelah Diskon :</td><td>${TotalBayar - potongan}</td></tr>
-        </table>`);
-    }
-
-    $(document).ready(function() {
-        $("#kamarHotel").change(HargPerKamar);
-        $("#DurasiMenginap, #TermasukBreakfast").change(hitungPembayaran);
-        $("form").submit(function(event) {
-            event.preventDefault();
-            simpan();
-        });
-    });
-</script>
