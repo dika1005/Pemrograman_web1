@@ -1,0 +1,23 @@
+• Style CSS
+.navlink {
+ font-family: 'Times New Roman', Times, serif;
+ font-size: 27px;
+ text-transform: uppercase;
+ margin-right: 30px;
+}
+.navlink:hover {
+ color: rgb(182, 215, 243);
+}
+.jumbotron{
+ background-image: praktikum7/gedungfkom.jpg;
+ background-size: cover;
+ height: 500px;
+}
+@media (min-width: 992px) {
+ .navlink {
+ font-family: Impact;
+ font-size: 20px;
+ text-transform: uppercase;
+ margin-right: 30px;
+ }
+}
