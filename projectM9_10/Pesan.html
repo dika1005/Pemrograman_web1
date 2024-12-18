@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Form Pemesanan Kamar Hotel</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link href="M7/css/bootstrap.min.css" rel="stylesheet">
+    <script src="M7/jquery-3.7.1.js"></script>
+    <script src="M7/js/bootstrap.bundle.min.js"></script>
+
     <script>
         function HargPerKamar() {
             var jenisKamar = $("#kamarHotel").val();
@@ -98,52 +98,56 @@
         });
     </script>
     <style>
-        .form-box {
-            width: 100%;
-            max-width: 600px;
-            padding: 40px;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin: 0 auto;
-            background-color: rgb(245, 245, 245);
-        }
-        .form-group {
-            margin-bottom: 20px;
-            
-        }
-        h1 {
-            text-align: left;
-        }
-        .kh {
-            background-color: #dad6d6 !important;
-            text-align: center;
-            color: black;
-            border-radius: 3px;
-        }
-        .tombol1, .tombol2 {
-            display: inline-block;
-            margin: 0 10px; 
-            padding: 7px 15px;
-            border: none;
-            border-radius: 3px;
-            color: white;
-            cursor: pointer;
-        }
+    .form-box {
+        width: 600px;
+        padding: 40px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin: 0 auto;
+        background-color: rgb(245, 245, 245);
+        display: block;
+    }
+    .form-group {
+        margin-bottom: 15px;
+        
+    }
+    h1 {
+        text-align: left;
+    }
+    table {
+        margin-left: 5px;
+        margin-right: 20px;
+    }
+    td {
+        padding: 10px;
+    }
     
-        .tombol1 {
-            background-color: blue;
-        }
-    
-        .tombol2 {
-            background-color: orange;
-        }
-    
-        .tombol-container {
-            text-align: center; 
-            margin-top: 20px; 
-        }
-    </style>
+    .kh {
+        background-color: #dad6d6 !important;
+        text-align: center;
+        color: black;
+        border-radius: 3px;
+    }
+    .tombol1 button {
+        position: center;
+        background-color: rgb(9, 67, 240);
+        border-radius: 3px;
+        padding: 7px 15px;
+        border: none;
+        cursor: pointer;
+        margin-left: 170%;
+    }
+    .tombol2 button {
+        position: center;
+        background-color: rgb(255, 205, 39);
+        border-radius: 3px;
+        padding: 7px 15px;
+        border: none;
+        cursor: pointer;
+        margin-left: 50%;
+    }
+</style>
 </head>
 <body>
 

@@ -23,17 +23,20 @@
             height: 200px;
             margin-bottom: 15px;
         }
-    .main-content {
-        width: 70%;
-        padding: 20px;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-    }
-    .main-content img {
-        width: 323px;
-        height: 100;
-    }
+        .main-content {
+            width: 75%;
+            padding: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between; /* Jarak antara gambar */
+            gap: 10px; /* Jarak antar gambar */
+        }
+        .main-content img {
+            width: calc(25% - 10px); /* 4 gambar per baris dengan jarak */
+            height: auto;
+            object-fit: cover; /* Menjaga proporsi gambar */
+            border-radius: 5px; /* Sudut gambar melengkung */
+        }
     </style>
 </head>
 <body>
