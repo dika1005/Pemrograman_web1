@@ -1,58 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <style>
-      th,
-      td {
-        padding: 10px;
-        text-align: center;
-      }
-      table {
-        margin: 0 auto;
-        width: 80%;
-      }
-    </style>
-  </head>
-  <body>
-    <h1 style="text-align: center">Data kamar</h1>
-    <table border="1">
-      <thead>
-        <tr>
-          <th>id kamar</th>
-          <th>gambar ruangan</th>
-          <th>jenis kamar</th>
-          <th>harga</th>
-          <th>fasilitas</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>001</td>
-          <td><img src="M7/kamar1.jpg" alt="kamar1" width="150px" /></td>
-          <td>standar rom</td>
-          <td>300.000</td>
-          <td>AC, TV, kamar mandi dalam</td>
-        </tr>
-        <tr>
-          <td>002</td>
-          <td><img src="M7/kamar4.jpeg" alt="kamar2" width="150px" /></td>
-          <td>deluxe room</td>
-          <td>500.000</td>
-          <td>AC, TV, kamar mandi dalam, balkon</td>
-        </tr>
-        <tr>
-          <td>002</td>
-          <td><img src="M7/kamar10.jpg" alt="kamar2" width="150px" /></td>
-          <td>deluxe room</td>
-          <td>800.000</td>
-          <td>
-            AC, TV, kamar mandi dalam, balkon, kolam renang dalam, play zone
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Data Kamar</title>
+        <link href="M7/css/bootstrap.min.css" rel="stylesheet" />
+    </head>
+    <body>
+        <div class="container">
+            <h1 class="text-center my-4">Data Kamar</h1>
+            <table class="table table-bordered table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Id Kamar</th>
+                        <th>Gambar Ruangan</th>
+                        <th>Jenis Kamar</th>
+                        <th>Harga</th>
+                        <th>Fasilitas</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>001</td>
+                        <td><img src="M7/kamar1.jpg" alt="kamar1" class="img-fluid" width="300px" /></td>
+                        <td>Standar Room</td>
+                        <td>300.000</td>
+                        <td>AC, TV, Kamar Mandi Dalam</td>
+                    </tr>
+                    <tr>
+                        <td>002</td>
+                        <td><img src="M7/kamar4.jpeg" alt="kamar2" class="img-fluid" width="300px" /></td>
+                        <td>Deluxe Room</td>
+                        <td>500.000</td>
+                        <td>AC, TV, Kamar Mandi Dalam, Balkon</td>
+                    </tr>
+                    <tr>
+                        <td>003</td>
+                        <td><img src="M7/kamar10.jpg" alt="kamar3" class="img-fluid" width="300px" /></td>
+                        <td>Family Room</td>
+                        <td>800.000</td>
+                        <td>AC, TV, Kamar Mandi Dalam, Balkon, Kolam Renang Dalam, Play Zone</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <script src="M7/jquery-3.5.1.slim.min.js"></script>
+        <script src="M7/js/bootstrap.min.js"></script>
+    </body>
 </html>
