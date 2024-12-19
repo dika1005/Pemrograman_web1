@@ -11,7 +11,7 @@
 <body>
     <div class="container-box">
         <div class="form-box">
-            <form>
+            <form onsubmit="validasiLogin(event)">
                 <h1 class="text">Login Form</h1> <br>
                 <div class="row mb-3">
                     <label for="inputUsername" class="col-sm-4 col-form-label">Username</label>
@@ -44,8 +44,27 @@
                 </fieldset>
                 <button type="submit" class="btn btn-primary w-100">Sign in</button>
             </form>
+
+            <a id="ifSucces" href="index.html" style="display:none;"></a>
+            <a id="ifFailed" href="Login.html" style="display:none;"></a>
+
         </div>
     </div>
     <script src="M7/js/bootstrap.bundle.min.js"></script>
+    <script src="M7/jquery-3.7.1.js"></script>
+    <script>
+        function validasiLogin(event) {
+            event.preventDefault(); 
+            let username = document.getElementById("user").value;
+            let password = document.getElementById("password").value;
+            if (username === "admin" && password === "123") {
+                alert("Login berhasil");
+                document.getElementById("ifSucces").click();  
+            } else {
+                alert("Login gagal");
+                document.getElementById("ifFailed").click();  
+            }
+        }
+    </script>
 </body>
 </html>

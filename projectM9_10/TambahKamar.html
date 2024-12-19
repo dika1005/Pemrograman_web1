@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Tambah data kamar</title>
+    <link href="M7/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .form-group {
+            margin-bottom: 15px;
+        }
+    </style>
+    <style>
+        .container {
+            max-width: 70%;
+            position: relative;
+        }
+        .card {
+            margin-top: 20px;
+            border-radius: 10px;
+            box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+        }
+        .card-header {
+            background-color: #ebeaea;
+            color: rgb(0, 0, 0);
+            padding: 10px;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+        .card-body {
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        function Validasi() {
+            let idKamar = document.getElementById("Id").value;
+            let jenisKamar = document.getElementById("jenisKamar").value;
+            let harga = document.getElementById("Harga").value;
+            let fasilitas = document.getElementById("Fasilitas").value;
+            if(idKamar == "") {
+                alert("Data tidak boleh kosong");
+                return false;
+            }
+            if(jenisKamar == "") {
+                alert("Data tidak boleh kosong");
+                return false;
+            }
+            if(harga == "") {
+                alert("Data tidak boleh kosong");
+                return false;
+            }
+            if(fasilitas == "") {
+                alert("Data tidak boleh kosong");
+                return false;
+            }
+            else {
+                alert("Data berhasil ditambahkan");
+                return true;
+            }
+        }
+    </script>
+
+    <div class="container mt-5">
+        <div class="card">
+            <div class="card-header">
+                <h1>Tambah Data Kamar</h1>
+            </div>
+            <div class="card-body">
+                <form action="/submit-data-kamar" method="post" enctype="multipart/form-data" onsubmit="return Validasi()">
+                    <div class="form-group">
+                        <label for="IdKamar">Id Kamar</label>
+                        <input type="number" class="form-control" id="Id" name="Id" min="1" max="10" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="GambarRuangan">Gambar Ruangan</label>
+                        <input type="file" class="form-control-file" id="GambarRuangan" name="GambarRuangan" accept="image/*" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="JenisKamar">Jenis Kamar</label>
+                        <select class="form-control" name="jenisKamar" id="jenisKamar">
+                            <option value="std">Standard</option>
+                            <option value="dlx">Deluxe</option>
+                            <option value="fml">Family</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="harga">Harga</label>
+                        <input type="number" class="form-control" id="Harga" name="harga" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="Fasilitas">Fasilitas</label>
+                        <textarea class="form-control" name="Fasilitas" id="Fasilitas" rows="3" placeholder="fasilitas" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Tambah</button>
+                        <button type="reset" class="btn btn-secondary">Batal</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="M7/js/jquery.js"></script>
+    <script src="M7/js/bootstrap.min.js"></script>
+</body>
+</html>
