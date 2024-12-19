@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Tambah Data Fasilitas</title>
+    <link href="M7/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .container {
+            max-width: 70%;
+            position: relative;
+        }
+        .card {
+            margin-top: 20px;
+            border-radius: 10px;
+            box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+        }
+        .card-header {
+            background-color: #ebeaea;
+            color: rgb(0, 0, 0);
+            padding: 10px;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+        .card-body {
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        function ValidasiFasilitas() {
+            let id = document.getElementById("id").value;
+            let namaFasilitas = document.getElementById("NamaFasilitas").value;
+            let deskripsi = document.getElementById("Deskripsi").value;
+            let hargaWn = document.getElementById("HargaWn").value;
+            let hargaWd = document.getElementById("HargaWd").value;
+
+            if (id === "" || namaFasilitas === "" || deskripsi === "" || hargaWn === "" || hargaWd === "") {
+                alert("Semua data wajib diisi.");
+                return false;
+            }
+            alert("Data fasilitas berhasil ditambahkan.");
+            return true;
+        }
+    </script>
+
+    <div class="container mt-5">
+        <div class="card">
+            <div class="card-header">
+                <h1>Tambah Data Fasilitas</h1>
+            </div>
+            <div class="card-body">
+                <form action="/submit-Facility-data" method="post" enctype="multipart/form-data" onsubmit="return ValidasiFasilitas()">
+                    <div class="form-group">
+                        <label for="inputId">Id Fasilitas</label>
+                        <input type="number" class="form-control" id="id" name="id" maxlength="30" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="NamaFasilitas">Nama Fasilitas</label>
+                        <input type="text" class="form-control" id="NamaFasilitas" name="NamaFasilitas" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="DeskripsiFasilitas">Deskripsi Fasilitas</label>
+                        <textarea class="form-control" id="Deskripsi" name="Deskripsi" rows="3" placeholder="Deskripsi" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="HargaWeekend">Harga (Weekend)</label>
+                        <input type="number" class="form-control" id="HargaWn" name="hargaWn" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="HargaWeekday">Harga (Weekday)</label>
+                        <input type="number" class="form-control" id="HargaWd" name="hargaWd" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="Quota">Quota</label>
+                        <input type="number" class="form-control" id="Quota" name="Quota" min="1" max="10" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="JamBuka">Jam Buka</label>
+                        <input type="time" class="form-control" id="JamBuka" name="JamBuka" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="JamTutup">Jam Tutup</label>
+                        <input type="time" class="form-control" id="JamTutup" name="JamTutup" required>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Tambah</button>
+                        <button type="reset" class="btn btn-secondary">Batal</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="M7/js/jquery.js"></script>
+    <script src="M7/js/bootstrap.min.js"></script>
+</body>
+</html>
