@@ -1,76 +1,78 @@
 <!DOCTYPE html>
 <html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Form Pemesanan Kamar Hotel</title>
-    <link href="M7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="M7/css/bootstrap.min.css" rel="stylesheet" />
     <script src="M7/jquery-3.7.1.js"></script>
     <script src="M7/js/bootstrap.bundle.min.js"></script>
 
     <script>
-        function HargPerKamar() {
-            var jenisKamar = $("#kamarHotel").val();
-            var harga = 0;
-            
-            if (jenisKamar === "std") {
-                harga = 300000;
-            } else if (jenisKamar === "dlx") {
-                harga = 500000;
-            } else if (jenisKamar === "fml") {
-                harga = 800000;
-            }
-            
-            $("#Harga").val(harga);
-            hitungPembayaran();
+      function HargPerKamar() {
+        var jenisKamar = $("#kamarHotel").val();
+        var harga = 0;
+
+        if (jenisKamar === "std") {
+          harga = 300000;
+        } else if (jenisKamar === "dlx") {
+          harga = 500000;
+        } else if (jenisKamar === "fml") {
+          harga = 800000;
         }
 
-        function Validasi() {
-            var NomorIdentitas = $("#NomorIdentitas").val();
-            if (NomorIdentitas.length !== 16) {
-                alert("Nomor identitas harus 16 digit.");
-                return false;
-            }
-            return true;
+        $("#Harga").val(harga);
+        hitungPembayaran();
+      }
+
+      function Validasi() {
+        var NomorIdentitas = $("#NomorIdentitas").val();
+        if (NomorIdentitas.length !== 16) {
+          alert("Nomor identitas harus 16 digit.");
+          return false;
+        }
+        return true;
+      }
+
+      function hitungPembayaran() {
+        var harga = parseInt($("#Harga").val()) || 0;
+        var durasi = parseInt($("#DurasiMenginap").val()) || 1;
+        var Breakfast = $("#TermasukBreakfast").is(":checked");
+        var TotalBayar = harga * durasi;
+
+        if (Breakfast) {
+          TotalBayar += 80000 * durasi;
         }
 
-        function hitungPembayaran() {
-            var harga = parseInt($("#Harga").val()) || 0;
-            var durasi = parseInt($("#DurasiMenginap").val()) || 1;
-            var Breakfast = $("#TermasukBreakfast").is(":checked");
-            var TotalBayar = harga * durasi;
-
-            if (Breakfast) {
-                TotalBayar += 80000 * durasi;
-            }
-            
-            if (durasi > 3) {
-                TotalBayar -= TotalBayar * 0.10;
-            }
-            
-            $("#TotalBayar").val(TotalBayar);
+        if (durasi > 3) {
+          TotalBayar -= TotalBayar * 0.1;
         }
 
-        function simpan() {
-            if (!Validasi()) {
-                return;
-            }
+        $("#TotalBayar").val(TotalBayar);
+      }
 
-            var idPemesan = $("#idPemesan").val();
-            var NamaPemesan = $("#NamaPemesan").val();
-            var jenisKelamin = $('input[name="jenisKelamin"]:checked').val();
-            var NomorIdentitas = $("#NomorIdentitas").val();
-            var kamarHotel = $("#kamarHotel").val();
-            var Harga = $("#Harga").val();
-            var TanggalPesan = $("#TanggalPesan").val();
-            var DurasiMenginap = $("#DurasiMenginap").val();
-            var TermasukBreakfast = $("#TermasukBreakfast").is(":checked") ? "Ya" : "Tidak";
-            var TotalBayar = $("#TotalBayar").val();
-            var diskon = DurasiMenginap > 3 ? 10 : 0;
-            var potongan = TotalBayar * diskon / 100;
+      function simpan() {
+        if (!Validasi()) {
+          return;
+        }
 
-            $("#Container").html(
-            `<h1>Data Pemesanan</h1>
+        var idPemesan = $("#idPemesan").val();
+        var NamaPemesan = $("#NamaPemesan").val();
+        var jenisKelamin = $('input[name="jenisKelamin"]:checked').val();
+        var NomorIdentitas = $("#NomorIdentitas").val();
+        var kamarHotel = $("#kamarHotel").val();
+        var Harga = $("#Harga").val();
+        var TanggalPesan = $("#TanggalPesan").val();
+        var DurasiMenginap = $("#DurasiMenginap").val();
+        var TermasukBreakfast = $("#TermasukBreakfast").is(":checked")
+          ? "Ya"
+          : "Tidak";
+        var TotalBayar = $("#TotalBayar").val();
+        var diskon = DurasiMenginap > 3 ? 10 : 0;
+        var potongan = (TotalBayar * diskon) / 100;
+
+        $("#Container").html(
+          `<h1>Data Pemesanan</h1>
             <table class="table table-bordered">
                 <tr><td>Id Pemesan :</td><td>${idPemesan}</td></tr>
                 <tr><td>Nama Pemesan :</td><td>${NamaPemesan}</td></tr>
@@ -84,21 +86,24 @@
                 <tr><td>Total Bayar :</td><td>${TotalBayar}</td></tr>
                 <tr><td>Diskon :</td><td>${diskon}%</td></tr>
                 <tr><td>Potongan :</td><td>${potongan}</td></tr>
-                <tr><td>Total Bayar Setelah Diskon :</td><td>${TotalBayar - potongan}</td></tr>
-            </table>`);
-        }
+                <tr><td>Total Bayar Setelah Diskon :</td><td>${
+                  TotalBayar - potongan
+                }</td></tr>
+            </table>`
+        );
+      }
 
-        $(document).ready(function() {
-            $("#kamarHotel").change(HargPerKamar);
-            $("#DurasiMenginap, #TermasukBreakfast").change(hitungPembayaran);
-            $("form").submit(function(event) {
-                event.preventDefault();
-                simpan();
-            });
+      $(document).ready(function () {
+        $("#kamarHotel").change(HargPerKamar);
+        $("#DurasiMenginap, #TermasukBreakfast").change(hitungPembayaran);
+        $("form").submit(function (event) {
+          event.preventDefault();
+          simpan();
         });
+      });
     </script>
     <style>
-    .form-box {
+      .form-box {
         width: 600px;
         padding: 40px;
         border: 1px solid #ccc;
@@ -107,29 +112,28 @@
         margin: 0 auto;
         background-color: rgb(245, 245, 245);
         display: block;
-    }
-    .form-group {
+      }
+      .form-group {
         margin-bottom: 15px;
-        
-    }
-    h1 {
+      }
+      h1 {
         text-align: left;
-    }
-    table {
+      }
+      table {
         margin-left: 5px;
         margin-right: 20px;
-    }
-    td {
+      }
+      td {
         padding: 10px;
-    }
-    
-    .kh {
+      }
+
+      .kh {
         background-color: #dad6d6 !important;
         text-align: center;
         color: black;
         border-radius: 3px;
-    }
-    .tombol1 button {
+      }
+      .tombol1 button {
         position: center;
         background-color: rgb(9, 67, 240);
         border-radius: 3px;
@@ -137,8 +141,8 @@
         border: none;
         cursor: pointer;
         margin-left: 170%;
-    }
-    .tombol2 button {
+      }
+      .tombol2 button {
         position: center;
         background-color: rgb(255, 205, 39);
         border-radius: 3px;
@@ -146,72 +150,125 @@
         border: none;
         cursor: pointer;
         margin-left: 50%;
-    }
-</style>
-</head>
-<body>
-
-<div class="form-box">
-    <h1>Form Pemesanan</h1>
-    <form method="get" onsubmit="simpan(); return false;">
+      }
+    </style>
+  </head>
+  <body>
+    <div class="form-box">
+      <h1>Form Pemesanan</h1>
+      <form method="get" onsubmit="simpan(); return false;">
         <div class="form-group">
-            <label for="idPemesan">Id Pemesan</label>
-            <input type="number" class="form-control" id="idPemesan" name="idPemesan" min="1" max="10" required>
+          <label for="idPemesan">Id Pemesan</label>
+          <input
+            type="number"
+            class="form-control"
+            id="idPemesan"
+            name="idPemesan"
+            min="1"
+            max="10"
+            required
+          />
         </div>
         <div class="form-group">
-            <label for="NamaPemesan">Nama Pemesan</label>
-            <input type="text" class="form-control" id="NamaPemesan" name="NamaPemesan" required>
+          <label for="NamaPemesan">Nama Pemesan</label>
+          <input
+            type="text"
+            class="form-control"
+            id="NamaPemesan"
+            name="NamaPemesan"
+            required
+          />
         </div>
         <div class="form-group">
-            <label>Jenis Kelamin</label><br>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="jenisKelamin" id="Laki-laki" value="Laki-laki" required>
-                <label class="form-check-label" for="Laki-laki">Laki-laki</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="jenisKelamin" id="Perempuan" value="Perempuan">
-                <label class="form-check-label" for="Perempuan">Perempuan</label>
-            </div>
+          <label>Jenis Kelamin</label><br />
+          <div class="form-check form-check-inline">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="jenisKelamin"
+              id="Laki-laki"
+              value="Laki-laki"
+              required
+            />
+            <label class="form-check-label" for="Laki-laki">Laki-laki</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="jenisKelamin"
+              id="Perempuan"
+              value="Perempuan"
+            />
+            <label class="form-check-label" for="Perempuan">Perempuan</label>
+          </div>
         </div>
         <div class="form-group">
-            <label for="NomorIdentitas">Nomor Identitas</label>
-            <input type="number" class="form-control" id="NomorIdentitas" name="NomorIdentitas" required>
+          <label for="NomorIdentitas">Nomor Identitas</label>
+          <input
+            type="number"
+            class="form-control"
+            id="NomorIdentitas"
+            name="NomorIdentitas"
+            required
+          />
         </div>
         <div class="form-group">
-            <label for="kamarHotel">Tipe Kamar</label>
-            <select class="form-control kh" id="kamarHotel" onchange="HargPerKamar()" required>
-                <option value="-" selected>--pilih--</option>
-                <option value="std">Standard</option>
-                <option value="dlx">Deluxe</option>
-                <option value="fml">Family</option>
-            </select>
+          <label for="kamarHotel">Tipe Kamar</label>
+          <select
+            class="form-control kh"
+            id="kamarHotel"
+            onchange="HargPerKamar()"
+            required
+          >
+            <option value="-" selected>--pilih--</option>
+            <option value="std">Standard</option>
+            <option value="dlx">Deluxe</option>
+            <option value="fml">Family</option>
+          </select>
         </div>
         <div class="form-group">
-            <label for="Harga">Harga</label>
-            <input type="number" class="form-control" id="Harga" readonly>
+          <label for="Harga">Harga</label>
+          <input type="number" class="form-control" id="Harga" readonly />
         </div>
         <div class="form-group">
-            <label for="TanggalPesan">Tanggal Pesan</label>
-            <input type="date" class="form-control" id="TanggalPesan" required>
+          <label for="TanggalPesan">Tanggal Pesan</label>
+          <input type="date" class="form-control" id="TanggalPesan" required />
         </div>
         <div class="form-group">
-            <label for="DurasiMenginap">Durasi Menginap</label>
-            <input type="number" class="form-control" id="DurasiMenginap" min="1" max="30" onchange="hitungPembayaran()" required> Hari
+          <label for="DurasiMenginap">Durasi Menginap</label>
+          <input
+            type="number"
+            class="form-control"
+            id="DurasiMenginap"
+            min="1"
+            max="30"
+            onchange="hitungPembayaran()"
+            required
+          />
+          Hari
         </div>
         <div class="form-group form-check">
-            <input type="checkbox" class="form-check-input" id="TermasukBreakfast" onchange="hitungPembayaran()">
-            <label class="form-check-label" for="TermasukBreakfast">Termasuk Breakfast</label>
+          <input
+            type="checkbox"
+            class="form-check-input"
+            id="TermasukBreakfast"
+            onchange="hitungPembayaran()"
+          />
+          <label class="form-check-label" for="TermasukBreakfast"
+            >Termasuk Breakfast</label
+          >
         </div>
         <div class="form-group">
-            <label for="TotalBayar">Total Bayar</label>
-            <input type="number" class="form-control" id="TotalBayar" readonly>
+          <label for="TotalBayar">Total Bayar</label>
+          <input type="number" class="form-control" id="TotalBayar" readonly />
         </div>
         <div class="tombol-container">
-            <button class="btn btn-primary tombol1" type="submit">Simpan</button>
-            <button class="btn btn-warning tombol2" type="reset">Batal</button>
+          <button class="btn btn-primary tombol1" type="submit">Simpan</button>
+          <button class="btn btn-warning tombol2" type="reset">Batal</button>
         </div>
-    </form>
-</div>
-<div id="Container"></div>
-</body>
+      </form>
+    </div>
+    <div id="Container"></div>
+  </body>
 </html>
