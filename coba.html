@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Pemesanan</title>
+    <style>
+        body {
+            color: rgb(0, 0, 0);
+            font-weight: bold;
+            background-color: rgb(255, 255, 255);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .f{
+            text-align: center;
+        }
+        .border-box {
+            border: 2px solid black;
+            padding: 20px;
+            width: 50%;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: rgb(240, 240, 240);
+            margin-bottom: 20px;
+        }
+        #resume {
+            width: 50%;
+            padding: 20px;
+            border: 2px solid black;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: rgb(80, 64, 64);
+            display: none;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+        }
+            .buttonsh {
+                text-align: center;
+                top: 10px; /* Mengatur jarak dari atas */
+                left: 100px; /* Mengatur jarak dari kiri */
+                position: relative;
+            }
+    </style>
+</head>
+<body>
+    <div class="border-box">
+        <h1 class="f">FORM PEMESANAN</h1>
+        <form id="pemesananForm">
+            <table>
+                <tr>
+                    <td><label for="idPemesanan">ID PEMESANAN:</label></td>
+                    <td><input type="number" id="idPemesanan" name="idPemesanan" required /></td>
+                </tr>
+                <tr>
+                    <td><label for="namaPemesanan">NAMA PEMESAN:</label></td>
+                    <td><input type="text" id="namaPemesanan" name="namaPemesanan" maxlength="35" minlength="5" required /></td>
+                </tr>
+                <tr>
+                    <td><label for="nomorIdentitas">NOMOR IDENTITAS:</label></td>
+                    <td><input type="text" id="nomorIdentitas" name="nomorIdentitas" maxlength="20" minlength="5" pattern="(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#])" required /></td>
+                </tr>
+                <tr>
+                    <td><label for="jenisKelamin">JENIS KELAMIN:</label></td>
+                    <td>
+                        <input type="radio" id="jenisKelaminL" name="jenisKelamin" value="Laki-laki" required /> Laki-laki
+                        <input type="radio" id="jenisKelaminP" name="jenisKelamin" value="Perempuan" required /> Perempuan
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="tipeKamar">PILIH TIPE KAMAR:</label></td>
+                    <td>
+                        <select id="tipeKamar" name="tipeKamar" onchange="updateHarga()">
+                            <option value="1000000">STANDAR - Rp1.000.000</option>
+                            <option value="2000000">DELUXE - Rp2.000.000</option>
+                            <option value="3000000">FAMILY - Rp3.000.000</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="harga">HARGA:</label></td>
+                    <td><input type="text" id="harga" readonly /></td>
+                </tr>
+                <tr>
+                    <td><label for="tanggalPesan">TANGGAL PESAN:</label></td>
+                    <td><input type="date" id="tanggalPesan" name="tanggalPesan" required /></td>
+                </tr>
+                <tr>
+                    <td><label for="durasiMenginap">DURASI MENGINAP (hari):</label></td>
+                    <td><input type="number" id="durasiMenginap" name="durasiMenginap" min="1" onchange="hitungTotal()" required /></td>
+                </tr>
+                <tr>
+                    <td><label for="breakfast">TERMASUK SARAPAN:</label></td>
+                    <td>
+                        <input type="checkbox" id="breakfast" name="breakfast" onchange="hitungTotal()" />
+                        <span id="outputBreakfast">Ya</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="totalBayar">TOTAL BAYAR:</label></td>
+                    <td><input type="text" id="totalBayar" readonly /></td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="buttonsh">
+                            <button type="button" onclick="simpanPemesanan()">SIMPAN</button>
+                            <button type="reset" onclick="document.getElementById('outputBreakfast').textContent = 'Tidak';">BATAL</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+
+    <div id="resume"></div> 
+
+    <script>
+        function updateHarga() {
+            const tipeKamar = document.getElementById('tipeKamar');
+            const harga = tipeKamar.options[tipeKamar.selectedIndex].value;
+            document.getElementById('harga').value = `Rp${parseInt(harga).toLocaleString()}`;
+        }
+
+        function hitungTotal() {
+            const harga = parseInt(document.getElementById('tipeKamar').value);
+            const durasi = parseInt(document.getElementById('durasiMenginap').value);
+            const breakfast = document.getElementById('breakfast').checked;
+            const total = harga * durasi + (breakfast ? 50000 * durasi : 0);
+            document.getElementById('totalBayar').value = `Rp${total.toLocaleString()}`;
+        }
+
+        function simpanPemesanan() {
+            const form = document.getElementById('pemesananForm');
+            const resume = document.getElementById('resume');
+            const data = new FormData(form);
+            let output = '<h2>Resume Pemesanan</h2><ul>';
+            for (const [key, value] of data.entries()) {
+                output += `<li>${key}: ${value}</li>`;
+            }
+            output += '</ul>';
+            resume.innerHTML = output;
+            resume.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
